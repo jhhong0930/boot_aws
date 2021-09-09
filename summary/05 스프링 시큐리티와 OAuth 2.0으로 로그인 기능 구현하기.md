@@ -30,7 +30,7 @@ spring.security.oauth2.client.provider.naver.user-name-attribute=response
 
 - scope
   - 기본적으로 scope는 기본값이 openid, profile, email이다
-  - openid라는 scope가 있으면 Open Id Provider로 인식하는데 이렇게되면 OpendId Provider인 서비스(구글) 과 그렇지 않은 서비스(네이버/카카오 등)로 나눠서 각각 OAuth2Service를 만들어야 한다
+  - openid라는 scope가 있으면 Open Id Provider로 인식하는데 이렇게되면 Open Id Provider인 서비스(구글) 과 그렇지 않은 서비스(네이버/카카오 등)로 나눠서 각각 OAuth2Service를 만들어야 한다
   - 하나의 OAuth2Service로 사용하기 위해 일부러 openid scope를 빼고 등록한다
 
 ---
