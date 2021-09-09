@@ -30,6 +30,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2:1.4.197'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
     implementation 'org.springframework.session:spring-session-jdbc'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {
