@@ -28,9 +28,26 @@ public class OAuthAttributes {
     // OAuth2User에서 반환하는 사용자 정보는 Map이기 때문에 값 하나하나를 변환해야 한다
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
 
+        if ("kakao".equals(registrationId)) return ofKakao("id", attributes);
+
         if ("naver".equals(registrationId)) return ofNaver("id", attributes);
 
         return ofGoogle(userNameAttributeName, attributes);
+    }
+
+    private static OAuthAttributes ofKakao(String userNameAttributeName, Map<String, Object> attributes) {
+
+        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
+
+        Map<String, Object> kakaoProfile = (Map<String, Object>) kakaoAccount.get("profile");
+
+        return OAuthAttributes.builder()
+                .name((String) kakaoProfile.get("nickname"))
+                .email((String) kakaoAccount.get("email"))
+                .picture((String) kakaoProfile.get("profile_image_url"))
+                .attributes(attributes)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
     }
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
